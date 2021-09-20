@@ -15,6 +15,7 @@ ev3 = EV3Brick
 left_motor = Motor(Port.B)
 right_motor = Motor(Port.C)
 robot = DriveBase(left_motor,right_motor,87,130 )
+# we can make new changes
 
 # Notes:
 # robot.straight(300), use ruler to measure the distance in cm and then multiply by 10 to get mm
