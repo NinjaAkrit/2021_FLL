@@ -7,6 +7,12 @@ from pybricks.tools import wait, StopWatch, DataLog
 from pybricks.robotics import DriveBase
 from pybricks.media.ev3dev import SoundFile, ImageFile
 
+
+# TODO:
+# 1. Move the robot in a given number of steps forward, backward, left and right
+# 2. Add a color sensor and make it follow a line
+# 3. accompolish a small part of the 1st mission (TBD)
+
 # This program requires LEGO EV3 MicroPython v2.0 or higher.
 # Click "Open user guide" on the EV3 extension tab for more information.
 
@@ -17,16 +23,57 @@ right_motor = Motor(Port.C)
 robot = DriveBase(left_motor,right_motor,87,130 )
 # we can make new changes
 
+def move(steps: int, dir: str):
+    # move (fwd/ bk) robot in number of steps indicated in the signature
+    if dir is "fwd":
+        # move forward
+        robot.straight(-1 * steps)
+    else:
+        # move backward
+        robot.straight(steps)
+  
+def turn(steps: int, dir: str):
+    #TODO: turn (left/ right) robot in number of steps indicated in the signature
+    if dir is "left":
+        robot.turn(steps)
+    else:
+        robot.turn(-1 * steps)
+
 # Notes:
 # robot.straight(300), use ruler to measure the distance in cm and then multiply by 10 to get mm
 # robot.turn(90) = makes robot turn right/left (no need to add degrees)
 # Since robot is built backwards, makes robot.straight codes to go negatively and vise versa for moving robot backwards 
 # Make robot.turn code negative for moving right and postive for left 
 
+# What did we accomplish
+# 1. github setup to share code and for version control
+# 2. succefully checked in the code into github from visual studio
+# 3. Refactored the code to make it more readable and usable
+# 4. We came up a plan to complete the mission
+
+# Next steps
+# 1. Find out the mission to solve?
+# 2. Try this program on the lego and make sure it works
+# 3. Write the code to solve small part of the big mission
+
 # Write your program here.
-robot.straight(-600)
-robot.turn(-30)
-robot.straight(-40)
+def goto_zone1():
+    # Hypothetical mission zone
+    turn(30, "right")
+    turn(40, "right")
+    move(40, "fwd")
+    move(750, "fwd")
+    turn(45, "right")
+    move(1050, "fwd")
+    turn(90, "right")
+    move(150, "fwd")
+
+goto_zone1()
+
+# move(100, "fwd")
+# move(100, "bk")
+# robot.turn(-30)
+# robot.straight(-40)
 #robot.straight(-750)
 #robot.turn(-45)
 #robot.straight(-1050)
