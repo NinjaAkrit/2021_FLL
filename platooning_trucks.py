@@ -1,12 +1,11 @@
 #!/usr/bin/env pybricks-micropython
+from pybricks.ev3devices import (ColorSensor, GyroSensor, InfraredSensor,
+                                 Motor, TouchSensor, UltrasonicSensor)
 from pybricks.hubs import EV3Brick
-from pybricks.ev3devices import (Motor, TouchSensor, ColorSensor,
-                                 InfraredSensor, UltrasonicSensor, GyroSensor)
-from pybricks.parameters import Port, Stop, Direction, Button, Color
-from pybricks.tools import wait, StopWatch, DataLog
+from pybricks.media.ev3dev import ImageFile, SoundFile
+from pybricks.parameters import Button, Color, Direction, Port, Stop
 from pybricks.robotics import DriveBase
-from pybricks.media.ev3dev import SoundFile, ImageFile
-
+from pybricks.tools import DataLog, StopWatch, wait
 
 # TODO:
 # 1. Move the robot in a given number of steps forward, backward, left and right
@@ -23,20 +22,20 @@ right_motor = Motor(Port.C)
 robot = DriveBase(left_motor,right_motor,87,130 )
 # we can make new changes
 
-def move(steps: int, dir: str):
+def move(steps, dir):
     # move (fwd/ bk) robot in number of steps indicated in the signature
     if dir is "fwd":
         # move forward
         robot.straight(-1 * steps)
-    else:
+    else if dir is "bk":
         # move backward
         robot.straight(steps)
   
-def turn(steps: int, dir: str):
+def turn(steps, dir):
     #TODO: turn (left/ right) robot in number of steps indicated in the signature
     if dir is "left":
         robot.turn(steps)
-    else:
+    else if dir is "right":
         robot.turn(-1 * steps)
 
 # Notes:
@@ -47,7 +46,7 @@ def turn(steps: int, dir: str):
 
 # What did we accomplish
 # 1. github setup to share code and for version control
-# 2. succefully checked in the code into github from visual studio
+# 2. successfully checked in the code into github from visual studio
 # 3. Refactored the code to make it more readable and usable
 # 4. We came up a plan to complete the mission
 
@@ -59,18 +58,24 @@ def turn(steps: int, dir: str):
 # Write your program here.
 def goto_zone1():
     # Hypothetical mission zone
-    turn(30, "right")
-    turn(40, "right")
-    move(40, "fwd")
-    move(750, "fwd")
-    turn(45, "right")
-    move(1050, "fwd")
+    move(530,"fwd")
     turn(90, "right")
-    move(150, "fwd")
+    move(77, "fwd")
+    robot.straight(17)  # move back 17
+    # move(17, "bk")
+    
+    #turn(30,right)
+    #turn(40,right)
+    #move(40,fwd)
+    #move(750,fwd)
+    #turn(45,right)
+    #move(1050,fwd)
+    #turn(90,right)
+    #move(150,fwd)
 
 goto_zone1()
-
-# move(100, "fwd")
+#robot.straight(-50
+#move(100, "fwd")
 # move(100, "bk")
 # robot.turn(-30)
 # robot.straight(-40)
